@@ -69,9 +69,9 @@ struct Node * insertafterNode(struct Node * head , struct Node *prevNode, int da
     struct Node *ptr;
     ptr = (struct Node *) malloc(sizeof(struct Node));
     struct Node *p = head;
-     ptr -> next=prevNode -> next ;
-    
-    prevNode -> next =ptr;
+    ptr->data = data;
+    ptr->next = prevNode->next ;
+    prevNode -> next = ptr;
     return head;
 }
 
@@ -100,10 +100,14 @@ int main()
     third->next = NULL;
 
     // traverseLinkedList(head);
-    head =  insetAtBeginning(head,55);
+    // head =  insetAtBeginning(head,55);
+    // traverseLinkedList(head);
+    // printf("\n");
+    head = insertAtIndex( head,4, 2);
     traverseLinkedList(head);
     printf("\n");
-    head = insertAtIndex( head,4, 2);
+
+    head = insertafterNode(head,second, 56);
     traverseLinkedList(head);
 
     return 0;
