@@ -44,9 +44,36 @@ struct Node *DeleteAtGivenindex(struct Node *head, int index)
 
 
 //delete at end
-struct Node *DeleteAtEnd(struct node *head){
+struct Node *DeleteAtEnd(struct Node *head){
     struct Node *p = head;
+    struct Node *q = head->next;
+
+    while (q->next!=NULL){
+        p= p->next;
+        q= q->next;
+    }
+    p->next = NULL;
+    free(q);
+    return head;
     
+}
+
+//delete at the given value 
+struct Node *DeleteAtGivenvalue(struct Node *head, int value){
+    struct Node *p = head;
+    struct Node *q = head -> next;
+
+    while( q->data != value && q->next != NULL){
+        p= p->next;
+        q=q->next;
+        }
+
+        if(q->data ==value){
+            p->next =q->next;
+            free(q);
+
+        }
+        return head;
 }
 
 int main()
@@ -74,7 +101,10 @@ int main()
     third->next = NULL;
 
     // LinkedList before delete first Node
+    printf("Linked list before deletion \n");
     traverseLinkedList(head);
+
+    printf("Linked List after deletion \n");
     // head = DeleteTheFirstNode(head);
     printf("\n");
 
@@ -84,7 +114,9 @@ int main()
     // printf("\n");
 
     //linked list delete at given index
-    head = DeleteAtGivenindex(head, 1);
+   //head = DeleteAtGivenindex(head,1);
+   // head = DeleteAtEnd(head);
+   head = DeleteAtGivenvalue(head,5);
     traverseLinkedList(head);
 
     return 0;
